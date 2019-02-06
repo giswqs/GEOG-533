@@ -1,7 +1,5 @@
 ### Geog533 - Lecture W02 - R Programming
 
-# I add thie line for demo
-
 x <- 1
 print(x)
 x
@@ -138,7 +136,7 @@ edit(df)
 fix(df)
 
 
-w <- list(name="Trump", party="Republican",age="50")
+w <- list(name = "Trump", party = "Republican",age = "50")
 w
 w$name
 w[1]
@@ -148,6 +146,8 @@ class(w[[1]])
 
 w[[2]]
 
+data()
+data(package = .packages(all.available = TRUE))
 
 write.csv(candidate,file = "candidate.csv")
 write.csv(candidate,file = "candidate.csv",row.names = FALSE)

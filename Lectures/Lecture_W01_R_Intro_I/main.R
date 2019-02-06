@@ -1,6 +1,6 @@
 1+1
 max(1,3,5)
-q()
+# q()
 help(max)
 ?max
 example(max)
