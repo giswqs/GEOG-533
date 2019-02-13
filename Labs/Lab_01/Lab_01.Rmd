@@ -1,0 +1,61 @@
+---
+title: "GEOG-533 Lab 1"
+author: Firstname Lastname
+date: '`r format(Sys.Date(), "%B %d, %Y")`'
+output: html_notebook
+---
+
+## Instruction for lab submission
+
+1. Make sure you change the **author** field above to your own *Firstname Lastname*
+2. Create a zip file named **Firstname_Lastname_Lab_01.zip**, which contains **Lab_01.Rmd** and **Lab_01.nb.html**
+3. Submit **Firstname_Lastname_Lab_01.zip** to [myCourses](https://mycourses.binghamton.edu) 
+
+## Questions
+
+**Cars93** in the **MASS** package contains data from 93 cars on sale in the USA in 1993.
+
+Load the library and the dataset.
+```{r}
+library(MASS)
+df <- Cars93
+?Cars93
+```
+
+Check the metadata and compute the summary statistics.
+```{r}
+str(df)
+summary(df)
+```
+
+
+### Question 1
+
+The **Type** variable classifies the type of market the car is aimed at. Find the cheapest (**Price**) car in each type, and the car with the greatest fuel efficiency (**MPG.highway**). Find out the **Manufacturer** and Model. (20 pt.)
+
+```{r}
+
+```
+
+
+### Question 2
+
+Compute the mean **Horsepower** for each type, and the difference between each cars horsepower and the mean for its type. Based on the difference values, calculate the skewness and kurtosis (10 pt.)
+
+```{r}
+
+```
+
+
+### Question 3
+
+Create two new data frames for USA and non-USA cars. (10 pt.)
+
+### Question 4
+
+Use **write.csv()** to save the USA car data to a file. Read it in and check to see that all the factors are correctly set as factors. (10 pt.)
+
+```{r}
+
+```
+
