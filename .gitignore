@@ -12,6 +12,7 @@
 _*.Rmd
 _*.*
 .Rproj.user
+Quizzes/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
