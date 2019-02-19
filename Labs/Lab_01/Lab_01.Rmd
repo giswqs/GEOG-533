@@ -58,4 +58,3 @@ Use **write.csv()** to save the USA car data to a file. Read it in and check to 
 ```{r}
 
 ```
-

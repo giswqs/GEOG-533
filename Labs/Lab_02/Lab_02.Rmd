@@ -1,0 +1,45 @@
+---
+title: "GEOG-533 Lab 2"
+author: Firstname Lastname
+date: '`r format(Sys.Date(), "%B %d, %Y")`'
+output: 
+  html_notebook:
+    toc: TRUE
+    toc_float: TRUE
+---
+
+## Instruction for lab submission
+
+1. Make sure you change the **author** field above to your own *Firstname Lastname*
+2. Create a zip file named **Firstname_Lastname_Lab_02.zip**, which contains **Lab_02.Rmd** and **Lab_02.nb.html**
+3. Submit **Firstname_Lastname_Lab_02.zip** to [myCourses](https://mycourses.binghamton.edu) 
+
+## Question 1
+
+The **Cars93** dataset in the **MASS** package contains data from 93 cars on sale in the USA in 1993. Randomly select 40 cars as the training dataset and the remaining 53 cars as the test dataset. Save both datasets as csv files. Find out the number of **USA** and **non-USA** cars in the training dataset. (10 pt.)
+
+```{r}
+
+```
+
+## Question 2
+Assume that the probabilities of boy and girl births are 0.515 and 0.485, respectively. Use the **sample()** function to simulate 10 births and print out the result. How many boys and girls do you get out of 10 births? Then simulate 10,000 births. How many boys and girls do you get out of 10,000 births? (10 pt.)
+
+```{r}
+
+```
+
+## Question 3
+Assume that the probabilities of boy and girl births are 0.515 and 0.485, respectively. What’s the probability of having exactly 3 boys out of 10 births? What’s the probability of having 8 or more boys out of 10 births?  Plot both the density function and cumulative probability function of the number of boy births out of 10. (15 pt.)
+
+```{r}
+
+```
+
+## Question 4
+If cars arrive randomly at a traffic light at the rate of five every ten seconds. What the probability that exactly four cars arrive in the next ten seconds? What’s the probability that more than five cars arrive in the next ten seconds?  Plot the density function of 0-20 cars arriving in the next ten seconds. (15 pt.)
+
+```{r}
+
+```
+

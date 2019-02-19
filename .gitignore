@@ -13,6 +13,7 @@ _*.Rmd
 _*.*
 .Rproj.user
 Quizzes/
+**/*Solution*
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
