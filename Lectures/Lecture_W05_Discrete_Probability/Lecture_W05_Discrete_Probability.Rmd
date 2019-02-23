@@ -68,7 +68,7 @@ sample(df$Price, 10)
 sample(df$Manufacturer,10)
 ```
 
-##Generating random sequences
+## Generating random sequences
 ```{r}
 set.seed(100)
 sample(1:10)
