@@ -1,0 +1,86 @@
+---
+title: "GEOG-533 Lab 3"
+author: Firstname Lastname
+date: '`r format(Sys.Date(), "%B %d, %Y")`'
+output:
+  html_notebook:
+    toc: yes
+    toc_float: yes
+---
+
+## Question 1
+The number of points scored by each team in a tournament is normally distributed, with mean μ = 32 and standard deviation σ = 7. What is the probability of:
+
+### Question 1.1
+A team scoring 20 points or fewer? Plot the density function and shade the area. (5 pt.)
+
+```{r}
+
+```
+
+### Question 1.2
+A team scoring more than 35 points? Plot the density function and shade the area. (5 pt.)
+```{r}
+
+```
+
+
+### Question 1.3
+A team scoring between 20 and 40 points? Plot the density function and shade the area. (5 pt.)
+```{r}
+
+```
+
+
+## Question 2
+The number of comments per post on a social media site is exponentially distributed, with the average post receiving ten comments. What percentage of posts get: 
+
+### Question 2.1
+Fewer than three comments?  Plot the density function and shade the area. (5 pt.)
+```{r}
+
+```
+
+### Question 2.2
+More than 20 comments? Plot the density function and shade the area. (5 pt.)
+```{r}
+
+```
+
+
+### Question 2.3
+Between five and ten comments? Plot the density function and shade the area. (5 pt.)
+```{r}
+
+```
+
+
+## Question 3
+Basic raster creation and calculation:
+
+### Question 3.1
+Create a first raster (30 rows × 30 columns) and assign values to the raster based on random values from a uniform distribution. Plot the raster and the histogram. (5 pt.)
+```{r}
+
+```
+
+### Question 3.2
+Create a second raster (30 rows × 30 columns) and assign values to the raster based on random values from a normal distribution. Plot the raster and the histogram. (5 pt.)
+```{r}
+
+```
+
+
+### Question 3.3
+Create a third raster (30 rows × 30 columns) and assign values to the raster based on cell-by-cell addition of the first raster and the second raster.  Plot the raster and the histogram. (5 pt.)
+```{r}
+
+```
+
+
+### Question 3.4
+Calculate the mean value of the third raster. Reclassify the third raster into a binary image: 1 (cell value > mean value) and 0 (cell value <= mean value).  Save the reclassified image to your working directory as a TIFF image. (5 pt.)
+```{r}
+
+```
+
