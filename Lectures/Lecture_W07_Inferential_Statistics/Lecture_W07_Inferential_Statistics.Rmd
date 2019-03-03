@@ -1,0 +1,249 @@
+---
+title: "Inferential Statistics"
+author: "Dr. Qiusheng Wu"
+output: 
+  html_notebook: 
+    toc: yes
+    toc_float: yes
+---
+
+## Generating random samples
+
+Suppose that we interview 500 students on campus, and the results show that the average student spends about 100 minutes each day preparing for classes with a standard deviation of 10 minutes. 
+
+```{r}
+n <- 500
+time.mean <- 100
+time.sd <- 10
+student <- rnorm(n,mean = time.mean,sd=time.sd)
+hist(student,breaks = 10,xlab="Time spent daily (minutes)")
+print(mean(student))
+print(sd(student))
+```
+
+## Sampling distribution of the mean
+What if we repeat the interview many times, e.g., 300 times?
+```{r}
+n <- 5000
+m <- 300
+time.mean <- 100
+time.sd <- 10
+v <- vector()
+for (i in 1:m) {
+  x <- rnorm(n,time.mean,time.sd)
+  avg <- mean(x)
+  std <- sd(x)
+  v <- c(v,avg)
+  # print(avg)
+  # print(std/sqrt(n))
+}
+hist(v,breaks = 15,freq = FALSE,xlab = "Sample mean (minutes)")
+curve(dnorm(x,mean(v),sd(v)),from = 95,to = 105,add = TRUE,n = 400,col = "red")
+mean(v)
+sd(v)
+```
+
+## Confidence interval for the mean
+```{r}
+q90 <- qnorm(0.95)  # 90% confidence interval
+curve(dnorm,from = -3,to = 3,main = "90% confidence interval")
+x <- c(-q90,seq(-q90,q90,by = 0.01),q90)
+y <- c(0,dnorm(seq(-q90,q90,by = 0.01)),0)
+polygon(x,y,col = "red")
+```
+
+qnorm(0.95) = `r round(q90,2)`
+
+```{r}
+q95 <- qnorm(0.975)  # 95% confidence interval
+curve(dnorm,from = -3,to = 3,main="95% confidence interval")
+x <- c(-q95,seq(-q95,q95,by = 0.01),q95)
+y <- c(0,dnorm(seq(-q95,q95,by = 0.01)),0)
+polygon(x,y,col="green")
+```
+
+qnorm(0.975) = `r round(q95,2)`
+
+```{r}
+q99 <- qnorm(0.995) # 99% confidence interval
+curve(dnorm,from = -3,to = 3,main="99% confidence interval")
+x <- c(-q99,seq(-q99,q99,by = 0.01),q99)
+y <- c(0,dnorm(seq(-q99,q99,by = 0.01)),0)
+polygon(x,y,col="blue")
+```
+
+qnorm(0.995) = `r round(q99,2)`
+
+Suppose that we interview 500 students on campus, and the results show that the average student spends about 100 minutes each day preparing for classes with a standard deviation of 10 minutes. Find 90%, 95%, and 99% confidence intervals.
+```{r}
+q90 <- qnorm(0.950)  # 90% confidence interval
+round(q90,2)
+q95 <- qnorm(0.975)  # 95% confidence interval
+round(q95,2)
+q99 <- qnorm(0.995)  # 99% confidence interval
+round(q99,2)
+std.err <- 10/sqrt(500)
+conf.90 <- c(100-q90*std.err,100+q90*std.err) #[99.26, 100.74]
+round(conf.90,2)
+conf.95 <- c(100-q95*std.err,100+q95*std.err) #[99.12, 100.88]
+round(conf.95,2)
+conf.99 <- c(100-q99*std.err,100+q99*std.err) #[98.85, 101.15]
+round(conf.99,2)
+```
+
+## Using mvrnorm function
+How to generate random samples from the specified normal distribution with the exact mean and standard deviation?
+
+```{r}
+library(MASS)
+x <- mvrnorm(n = 500,mu = 100,Sigma = 100,empirical = TRUE)
+mean(x)
+sd(x)
+```
+
+## Finding Confidence Interval 
+
+### Problem
+You have a sample from a population. Given that sample, you want to determine a confidence interval for the population’s mean.
+
+### Solution
+* Apply the t.test function to your sample `x`:
+* `t.test(x)`
+* The output includes a confidence interval at the 95% confidence level. To see intervals at other levels, use the conf.level argument.
+
+### Example
+```{r}
+library(MASS)
+x <- mvrnorm(n = 500,mu = 100,Sigma = 100,empirical = TRUE)
+t.test(x,conf.level = 0.90)    #[99.26, 100.74]
+t.test(x,conf.level = 0.95)    #[99.12, 100.88]
+t.test(x,conf.level = 0.99)    #[98.84, 101.16]
+
+```
+
+### How to extract confidence interval out of t.test() output?
+
+```{r}
+library(MASS)
+x <- mvrnorm(n = 500,mu = 100,Sigma = 100,empirical = TRUE)
+result <- t.test(x,conf.level = 0.95)  
+print(result)
+conf.int <- result$conf.int
+print(conf.int)
+conf.level <- attr(result$conf.int, "conf.level")
+print(conf.level)
+```
+
+
+## One-sample t-test
+
+### Problem
+Suppose that we interview 50 students on campus, and the results show that the average student spends about 99 minutes each day preparing for classes with a standard deviation of 10 minutes. 
+
+***Null hypothesis***
+
+$H_o:\mu = 100$
+
+***Alternative hypothesis***
+
+$H_{\alpha}:\mu \neq 100$
+
+### Example
+```{r}
+library(MASS)
+x <- mvrnorm(n = 500,mu = 99,Sigma = 100,empirical = TRUE)
+result <- t.test(x,mu = 100)
+result
+if(result$p.value>0.05){
+  print("We cannot reject the null hypothesis")
+} else {
+  print("We reject the null hypothesis")}
+```
+
+## Two-sample t-test
+
+### Problem
+
+Suppose that we interview **50 students** on campus, and the results show that the average student spends about **99 minutes** each day preparing for classes with a standard deviation of **10 minutes**. 
+
+Suppose that we interview another **50 students** on campus, and the results show that the average student spends about **98 minutes** each day preparing for classes with a standard deviation of **5 minutes**. 
+
+***Null hypothesis***
+
+$H_o: \mu_1 = \mu_2$
+
+***Alternative hypothesis***
+
+$H_o: \mu_1 \neq \mu_2$
+
+### Example
+```{r}
+library(MASS)
+x1 <- mvrnorm(n = 50,mu = 99,Sigma = 100,empirical = TRUE)
+x2 <- mvrnorm(n = 50,mu = 98,Sigma = 25,empirical = TRUE)
+result <- t.test(x1,x2)
+result
+if(result$p.value>0.05){
+  print("We cannot reject the null hypothesis")
+} else {
+  print("We reject the null hypothesis")}
+```
+
+## Student's t distribution
+### Solution
+* `dt(x, df)`
+* `pt(q, df,lower.tail = TRUE)`
+* `qt(p, df,lower.tail = TRUE)`
+* `rt(n, df)`
+
+### Example
+```{r}
+qnorm(0.95)
+qnorm(0.975)
+qnorm(0.995)
+qt(0.95,df = 10)
+qt(0.975,df = 10)
+qt(0.995,df = 10)
+curve(dt(x,df = 1),from = -5,to = 5,ylim = c(0,0.4),col = "red")
+curve(dt(x,df = 2),from = -5,to = 5,col = "green",add=TRUE)
+curve(dt(x,df = 5),from = -5,to = 5,col = "blue",add = TRUE)
+curve(dnorm,add=TRUE,col ="black",lwd=2)
+
+```
+
+## Testing a sample proportion
+
+### Problem
+We want to test the hypothesis that more than 30% of U.S. households have internet access (with a significance level of 5%). We collect a sample of 150 households and find that 57 have access.
+
+### Solution
+```{r}
+result <- prop.test(57,n = 150,p = 0.3,alternative = "greater")
+result
+if(result$p.value>0.05) {
+  print("We cannot reject the null hypothesis ")
+} else {
+  print("We accept the alternative hypothesis")
+}
+
+```
+
+## Two-sample proportion test
+### Problem
+A random sample of 428 adults from New York City reveals 128 smokers. A random sample of 682 adults from San Francisco reveals 170 smokers. Is the proportion of adult smokers in New York City different from that in San Francisco? 
+
+### Solution
+```{r}
+result <- prop.test(x=c(128,170), n=c(428,682))
+result
+if(result$p.value>0.05) {
+  print("We cannot reject the null hypothesis ")
+} else {
+  print("We accept the alternative hypothesis")
+}
+```
+
+
+## Online equation editor
+* <https://www.codecogs.com/latex/eqneditor.php>
+* <http://rogercortesi.com/eqn/>
