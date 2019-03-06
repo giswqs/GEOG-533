@@ -1,0 +1,140 @@
+---
+title: "GEOG-533 Lab 4"
+author: Firstname Lastname
+date: '`r format(Sys.Date(), "%B %d, %Y")`'
+output:
+  html_notebook:
+    toc: yes
+    toc_float: yes
+---
+
+Complete the following exercises in Chapter 5 (Inferential Statistics) of the textbook [R] pages 172-176.
+
+## Question 1 
+This is Exercise 1 of the textbook.
+
+A planner wishes to estimate average household size for a community within 0.2. The planner desires a 95% confidence level. A small survey indicates that the standard deviation of household size is 2.0. How large should the sample be?
+
+```{r}
+
+```
+
+
+
+## Question 2 
+This is Exercise 3 of the textbook.
+
+The tolerable level of a certain pollutant is 16 mg/l. A researcher takes a sample of size n = 50, and finds that the mean level of the pollutant is 18.5 mg/l, with a standard deviation of 7 mg/l. Construct a 95% confidence interval around the sample mean, and determine whether the tolerable level is within this interval.
+
+```{r}
+
+```
+
+
+
+## Question 3
+This is Exercise 5 of the textbook.
+
+The proportion of people changing residence in the USA each year is 0.165. A researcher believes that the proportion may be different in the town of Amherst. She surveys 50 individuals in the town of Amherst and finds that the proportion who moved last year is 0.24. Is there evidence to conclude that the town has a mobility rate that is different from the national average? Use α = 0.05 and find a 90% confidence interval around the sample proportion, and state your conclusion.
+
+```{r}
+
+```
+
+
+## Question 4 
+This is Exercise 7 of the textbook.
+
+A survey of the white and nonwhite population in a local area reveals the following annual trip frequencies to the nearest state park: 
+
+<center>$\bar{x_{1}}=4.1$,   $s_{1}^{2} = 14.3$, $n_{1} = 20$</center>
+
+<center>$\bar{x_{2}}=3.1$,   $s_{2}^{2} = 12.0$, $n_{1} = 16$</center>
+
+where the subscript ‘1’ denotes the white population and the subscript ‘2’ denotes the nonwhite population. 
+
+<ol type="a">
+  <li>Assume that the variances are equal, and test the null hypothesis that there is no difference between the park-going frequencies of whites and nonwhites. </li>
+  <li>Repeat the exercise, assuming that the variances are unequal. </li>
+  <li>Find the p-value associated with the tests in parts (a) and (b). </li>
+  <li>Associated with the test in part (a), find a 95% confidence interval for the difference in means. </li>
+  <li>Repeat parts (a)–(d), assuming sample sizes of n<sub>1</sub> = 24 and n<sub>2</sub> = 12. </li>
+</ol>
+
+
+```{r}
+
+```
+
+## Question 5
+This is Exercise 9 of the textbook.
+
+A researcher suspects that the level of a particular stream’s pollutant is higher than the allowable limit of 4.2 mg/l. A sample of n = 17 reveals a mean pollutant level of = 6.4 mg/l, with a standard deviation of 4.4 mg/l. Is there sufficient evidence that the stream’s pollutant level exceeds the allowable limit? What is the p-value?
+
+```{r}
+
+```
+
+
+## Question 6
+This is Exercise 13 of the textbook.
+
+Suppose we want to know whether the mean length of unemployment differs among the residents of two local communities. Sample information is as follows: 
+
+Community A: sample mean = 3.4 months,  s = 1.1 month,  n = 52 
+
+Community B: sample mean = 2.8 months, s = 0.8 month,  n = 62 
+
+Set up the null and alternative hypotheses. Use α = 0.05. Choose a particular test, and show the rejection regions on a diagram. Calculate the test statistic, and decide whether to reject the null hypothesis. (Do not assume that the two standard deviations are equal to one another – therefore a pooled estimate of s should not be found.)
+
+```{r}
+
+```
+
+
+## Question 7
+This is Exercise 15 of the textbook.
+
+Find the 90% and 95% confidence intervals for the following mean stream link lengths: 
+
+100, 426, 322, 466, 112, 155, 388, 1155, 234, 324, 556, 221, 18, 133, 177, 441.
+```{r}
+
+```
+
+
+## Question 8
+This is Exercise 16 of the textbook.
+
+A researcher surveys 50 individuals in Smithville and 40 in Amherst, finding that 30% of Smithville residents moved last year, while only 22% of Amherst residents did. Is there enough evidence to conclude that mobility rates in the two communities differ? Use a two-tailed alternative, and α = 0.10. Again, find the p-value and a 90% confidence interval for the difference in proportions.
+
+```{r}
+
+```
+
+
+## Question 9
+This is Exercise 17 of the textbook.
+
+A survey of two towns is carried out to see whether there are differences in levels of education. Town A has a mean of 12.4 years of education among its residents; Town B has a mean of 14.4 years. Fifteen residents were surveyed in each town. The sample standard deviation was 3.0 in Town A, and 4.0 in Town B. Is there a significant difference in education between the two towns?
+
+<ol type="a">
+  <li>Assume the variances are equal. </li>
+  <li>Assume the variances are not equal. </li>
+</ol>
+
+In each case, state the null and alternative hypotheses, and test the null hypothesis, using α = 0.05. Find the p-values and a 95% confidence interval for the difference.
+
+```{r}
+
+```
+
+## Question 10
+This is Exercise 20 of the textbook.
+
+A survey of n = 50 people reveals that the proportion of residents in a community who take the bus to work is 0.15. Is this significantly different from the statewide average of 0.10? Use a Type I error probability of 0.05.
+```{r}
+
+
+```
+
