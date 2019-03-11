@@ -1,7 +1,6 @@
 ---
 title: "GEOG-533 Lab 3"
-author: Firstname Lastname
-date: '`r format(Sys.Date(), "%B %d, %Y")`'
+author: "Firstname Lastname"
 output:
   html_notebook:
     toc: yes
