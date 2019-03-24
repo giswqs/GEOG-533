@@ -1,0 +1,182 @@
+---
+title: "Analysis of variance (ANOVA)"
+author: "Qiusheng Wu"
+output: 
+  html_notebook: 
+    toc: yes
+    toc_float: yes
+---
+
+## Hypothesis Testing
+
+### Problem
+
+Test whether employees experience different levels of stress under normal, announced layoff, and during layoff. 
+
+### Solution
+
+```{r}
+
+A <- c(2,3,7,2,6)
+B <- c(10,8,7,5,10)
+C <- c(10,13,14,13,15)
+
+stress <- c(A,B,C)
+group <- c(rep("A",5),rep("B",5),rep("C",5))
+
+df <- data.frame(stress,group)
+
+m <- aov(stress~group,data = df)
+m
+summary(m)
+
+TukeyHSD(m)
+plot(TukeyHSD(m))
+
+qf(0.95,df1 = 2,df2 = 12)
+pf(22.59,df1 = 2,df2 = 12,lower.tail = FALSE)
+
+s <- oneway.test(stress~group, data = df, var.equal = TRUE)
+s
+summary(s)
+str(s)
+```
+
+## Testing for Normality
+
+### Problem
+You want a statistical test to determine whether your data sample is from a normally distributed population.
+
+### Solution
+Use the shapiro.test function: 
+
+`shapiro.test(x)`
+
+The output includes a p-value. Conventionally, p < 0.05 indicates that the population is likely not normally distributed whereas p > 0.05 provides no such evidence.
+
+```{r}
+x1 <- rnorm(n = 1000)
+hist(x1)
+shapiro.test(x1)
+
+x2 <- rt(1000,df = 5)
+hist(x2)
+shapiro.test(x2)
+
+x3 <- runif(1000)
+hist(x3)
+shapiro.test(x3)
+
+```
+
+
+## Testing for Homogeneity 
+
+### Problem
+The population variances are assumed equal for each category (`leveneTest()` in `car` package)
+
+### Solution
+
+Sample data with homogeneity
+```{r message=FALSE, warning=FALSE}
+#Load packages
+if (!require(car)) {install.packages("car")}
+library(reshape2)
+library(car)
+
+#Creating example data
+sample1 <- rnorm(20)
+sample2 <- rnorm(20)
+
+#Combine data
+sample <- as.data.frame(cbind(sample1, sample2))
+
+#Melt data
+dataset <- melt(sample)
+
+print(dataset)
+
+#Compute test
+leveneTest(value ~ variable, dataset)
+
+```
+
+
+
+
+Sample data without homogeneity
+```{r }
+#Load packages
+library(reshape2)
+library(car)
+
+#Creating example data
+sample1 <- rnorm(20)
+sample2 <- rnorm(20,mean = 100,sd = 10)
+
+#Combine data
+sample <- as.data.frame(cbind(sample1, sample2))
+
+#Melt data
+dataset <- melt(sample)
+
+print(dataset)
+
+#Compute test
+leveneTest(value ~ variable, dataset)
+
+```
+
+
+## Kruskal-Wallis Test
+
+### Problem
+If the data deviate drastically from the assumptions, or if the p-value is close to $\alpha$, then an alternative test that does not rely on the assumptions might be considered. Tests that do not make assumptions regarding how the underlying data are distributed are called **nonparametric tests**. The nonparametric test for testing the equality of means for two or more categories is the Kruskal–Wallis test. There is another set of circumstances for which the Kruskal–Wallis test is useful for testing hypotheses about a set of means – namely when only ranked (i.e., ordinal) data are available. In such situations, there is insufficient information to use ANOVA, which requires interval or ratio level data. (Recall that with interval and ratio data the magnitude of the difference between the observations is meaningful.)
+
+
+### Solution
+For example, we want to know if the air quality vaires significantly by month?
+```{r}
+library(graphics)
+df <- airquality
+boxplot(Ozone ~ Month, data = df)
+kruskal.test(Ozone ~ Month, data = df)
+```
+
+
+## Chi-squared Distribution
+
+### Definition
+If $X_{1},X_{2},…,X_{m}$ are $m$ independent random variables having the standard normal distribution, then the following quantity follows a Chi-Squared distribution with $m$ degrees of freedom. Its mean is $m$, and its variance is $2m$.
+
+
+
+### Solution
+
+```{r}
+
+x <- rnorm(1000)
+hist(x)
+x2 <- x^2
+hist(x2)
+
+curve(dchisq(x, df = 7), from = 0, to = 20)
+qchisq(.95, df = 7) # 7 degrees of freedom 
+```
+
+
+## F Distribution
+
+### Definition
+If $V_1$ and $V_2$ are two independent random variables having the Chi-Squared distribution with $m_1$ and $m_2$ degrees of freedom respectively, then the following quantity follows an F distribution with $m_1$ numerator degrees of freedom and $m_2$ denominator degrees of freedom, i.e.,$(m_1,m_2)$ degrees of freedom.
+
+### Problem
+Find the 95th percentile of the F distribution with (5, 2) degrees of freedom.
+
+### Solution
+```{r}
+curve(df(x,df1 = 5,df2 = 2),from = 0,to = 5)
+qf(.95, df1 = 5, df2 = 2)
+
+```
+
