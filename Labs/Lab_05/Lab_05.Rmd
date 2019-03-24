@@ -1,0 +1,165 @@
+---
+title: "GEOG-533 Lab 5"
+author: Firstname Lastname
+output: 
+  html_notebook:
+    toc: TRUE
+    toc_float: TRUE
+---
+
+Complete the following exercises in Chapter 6 (Analysis of Variance) of the textbook pages 199-203. For each question, you need to specify the null hypothesis and why you accept or reject the null hypothesis.
+
+
+## Question 1
+This is Exercise 2 in Chapter 6 of the Textbook [R].
+
+### Problem
+Assume that an analysis of variance is conducted for a study where there are $N = 50$ observations and $k = 5$ categories. Fill in the blanks in the following ANOVA table:
+
+|          | Sum of squares  | Degrees of freedom |  Mean square   |       *F*       |
+|----------|-----------------|--------------------|----------------|-----------------|
+| Between  |                 |                    |      116.3     |                 |
+| Within   |       2000      |                    |                |                 |
+| Total    |                 |                    |                |                 |
+
+
+### Solution
+```{r}
+N <- 50
+k <- 5
+## define the variables here, and use the imbedded r code like `r variable` to fill in the blanks.  
+
+```
+
+|          | Sum of squares  | Degrees of freedom |  Mean square   |       *F*       |
+|----------|-----------------|--------------------|----------------|-----------------|
+| Between  |                 |        `r k-1`     |      116.3     |                 |
+| Within   |       2000      |        `r N-k`     |                |                 |
+| Total    |                 |                    |                |                 |
+
+
+
+
+## Question 2
+This is Exercise 6 in Chapter 6 of the Textbook [R].
+
+### Problem 
+Is there a significant difference between the distances moved by low- and high-income individuals? Twelve respondents in each of the income categories are interviewed, with the following results for the distances associated with residential moves:
+
+| Respondent  | Low income  | High income |
+|-------------|-------------|-------------|
+|     1       |      5      |     25      |
+|     2       |      7      |     24      |
+|     3       |      9      |     8       |
+|     4       |      11     |     2       |
+|     5       |      13     |     11      |
+|     6       |      8      |     10      |
+|     7       |      10     |     10      |
+|     8       |      34     |     66      |
+|     9       |      17     |     113     |
+|     10      |      50     |     1       |
+|     11      |      17     |     3       |
+|     12      |      25     |     5       |
+|     Mean    |      17.17  |     23.17   |
+|  Std. dev.  |      13.25  |     33.45   |
+
+
+Test the null hypothesis of homogeneity of variances by forming the ratio $s_1^2 / s_2^2$ which has an F-ratio with $n_1 – 1$ and $n_2 – 1$ degrees of freedom. Then use ANOVA (with $\alpha = 0.10$) to test whether there are differences in the two population means. Set up the null and alternative hypotheses, choose a value of α and a test statistic, and test the null hypothesis. What assumption of the test is likely not satisfied?
+
+### Solution
+```{r}
+
+```
+
+
+## Question 3
+This is Exercise 9 in Chapter 6 of the Textbook [R].
+
+### Problem
+A sample is taken of incomes in three neighborhoods, yielding the following data: 
+
+|          |        A        |          B         |       C        | Overall (Combined sample) |
+|----------|-----------------|--------------------|----------------|---------------------------|
+| N        |        12       |          10        |        8       |             30            |
+| Mean     |       43.2      |          34.3      |        27.2    |             35.97         |
+| Std. dev.|       36.2      |          20.3      |        21.4    |             29.2          |
+
+
+Use analysis of variance (with α = 0.05) to test the null hypothesis that the means are equal.
+
+
+### Solution
+```{r}
+
+```
+
+
+
+## Question 4
+This is Exercise 10 in Chapter 6 of the Textbook [R].
+
+### Problem
+Use the Kruskal–Wallis test (with α = 0.05) to determine whether you should reject the null hypothesis that the means of the four columns of data are equal:
+
+|   Col 1  |       Col 2     |        Col 3       |       Col 4    |
+|----------|-----------------|--------------------|----------------|
+|   23.1   |       43.1      |        56.5        |       10002.3  |
+|   13.3   |       10.2      |        32.1        |       54.4     |
+|   15.6   |       16.2      |        43.3        |       8.7      |
+|   1.2    |       0.2       |        24.4        |       54.4     |
+
+
+### Solution
+```{r}
+
+```
+
+
+## Question 5
+This is Exercise 12 in Chapter 6 of the Textbook [R].
+
+### Problem
+A researcher wishes to know whether distance traveled to work varies by income. Eleven individuals in each of three income groups are surveyed. The resulting data are as follows (in commuting miles, one-way):
+
+```{r}
+## This is the script to generate the table. Do not write your answer inside in this block.
+Observations <- seq(1:11)
+Low <- c(5,4,1,2,3,10,6,6,4,12,11)
+Medium <- c(10,10,8,6,5,3,16,20,7,3,2)
+High <- c(8,11,15,19,21,7,7,4,3,17,18)
+
+df <- data.frame(Observations,Low,Medium,High)
+print(df)
+```
+
+Use analysis of variance (with α = 0.05) to test the hypothesis that commuting distances do not vary by income. Also evaluate (using R and the Levene test) the assumption of homoscedasticity. Finally, lump all of the data together and produce a histogram, and comment on whether the assumption of normality appears to be satisfied.
+
+
+### Solution
+```{r}
+
+```
+
+
+## Question 6
+This is Exercise 13 in Chapter 6 of the Textbook [R].
+
+### Problem
+Data are collected on automobile ownership by surveying residents in central cities, suburbs and rural areas. The results are:
+
+|                      | Central cities  |      Suburbs       |  Rural areas   |
+|----------------------|-----------------|--------------------|----------------|
+|Number of observations|      10         |        15          |       15       |
+|      mean            |      1.5        |        2.6         |       1.2      |
+|      Std. dev        |      1.0        |        1.1         |       1.2      |  
+|Overall mean: 1.725   |                 |                    |                |  
+|Overall std.dev: 1.2  |                 |                    |                |   
+
+
+Test the null hypothesis that the means are equal in all three areas.
+
+### Solution
+```{r}
+
+```
+
