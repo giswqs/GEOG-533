@@ -1,0 +1,129 @@
+---
+title: "Multiple Regression"
+author: "Dr. Qiusheng Wu"
+output: 
+  html_notebook: 
+    toc: yes
+    toc_float: yes
+---
+
+
+## Forumlas
+
+Specifiy predictors to be included in the formula: 
+
+* `lm(formula = y ~ u + v + w)`
+
+Include all predictors:
+
+* `lm(formula = y ~ .)`  
+
+Linear regression without an intercept: 
+
+* `lm(y ~ x + 0)`
+
+Linear regression with interaction terms: 
+
+* `lm(y ~ u*v)`
+
+Backward stepwise regression: 
+
+* `full.model <- lm(y ~ x1 + x2 + x3 + x4)`
+
+* `reduced.model <- step(full.model, direction="backward")`
+
+Forward stepwise regression: 
+
+* `min.model <- lm(y ~ 1)`
+
+* `fwd.model <- step(min.model, direction="forward", scope=( ~ x1 + x2 + x3 + x4 ))`
+
+
+## Getting Regression Statistics
+
+Save the regression model in a variable, say `m`:
+
+`m <- lm( y ~ u + v + w)`
+
+The use functions to extract regression statistics and information from the model:
+
+* `anova(m)`: ANOVA table
+
+* `coefficients(m)`: Model coefficients
+
+* `coef(m)`: Same as coefficients(m)
+
+* `confint(m)`: Confidence intervals for the regression coefficients
+
+* `deviance(m)`: Residual sum of squares
+
+* `effects(m)`: Vector of orthogonal effects
+
+* `fitted(m)`: Vector of fitted y values
+
+* `residuals(m)`: Model residuals
+
+* `resid(m)`: Same as residuals(m)
+
+* `summary(m)`: Key statistics, such as $R^2$, the $F$ statistic, and the residual standard error ($\alpha$)
+
+* `vcov(m)`: Variance–covariance matrix of the main parameters
+
+
+
+## Multiple Regression
+
+```{r}
+# url <- "http://spatial.binghamton.edu/geog533/data/AlbumSales2.csv"
+url <- "AlbumSales2.csv"
+df <- read.csv(url,header = TRUE)
+df
+
+m <- lm(sales ~ adverts + airplay + attract, data = df)
+# m <- lm(sales ~ ., data = df)
+summary(m)
+anova(m)
+coefficients(m)
+coef(m)
+a <- round(coef(m)[1],2)
+b1 <- round(coef(m)[2],2)
+b2 <- round(coef(m)[3],2)
+b3 <- round(coef(m)[4],2)
+
+```
+
+The regression equation is: $sales_i = `r a` + `r b1` \times advertsing_i + `r b2` \times airplay_i + `r b3` \times attractiveness_i$
+
+## Categorical Predictors
+
+[American Median Household Incomes By Race:](http://www.businessinsider.com/heres-median-income-in-the-us-by-race-2013-9)
+
+![Imgur](https://i.imgur.com/ZUJaee3.jpg)
+
+```{r}
+set.seed(100)
+race <- c(rep("Asian",50),rep("White",50),rep("Hispanic",50),rep("Black",50))
+income <- c(rnorm(50,68636,10000),rnorm(50,57009),rnorm(50,39005,10000),rnorm(50,33321,10000))
+df <- data.frame(income,race)
+
+df <- df[sample(1:nrow(df)),]
+df
+
+tapply(df$income, df$race, median)
+m <- lm(income~race,data = df)
+summary(m)
+a <- round(coef(m)[1],0)
+b1 <- round(coef(m)[2],0)
+b2 <- round(coef(m)[3],0)
+b3 <- round(coef(m)[4],0)
+
+# income = 69451 - 34909*Black - 31444*Hispanic - 12442*White
+summary(df$race)
+levels(df$race)
+contrasts(df$race) <- contr.treatment(4,base = 2)
+df$race
+m <- lm(income~race,data = df)
+summary(m)
+# income = 34541 + 34909*Asian + 3465*Hispanic + 22467*White
+```
+
