@@ -1,0 +1,136 @@
+---
+title: "GEOG-533 Lab 9"
+author: Firstname Lastname
+output: 
+  html_notebook:
+    toc: TRUE
+    toc_float: TRUE
+---
+
+## Question 1
+Use R package **UScensus2010county** to complete the following tasks:  (20 pt.)
+
+### Question 1(a)
+Plot a map of New York counties using the **plot** function.
+```{r}
+
+```
+
+### Question 1(b)	
+Plot a map of New York counties using the **qtm** function.
+```{r}
+
+```
+
+
+### Question 1(c)	
+How many counties in New York State?
+```{r}
+
+```
+
+### Question 1(d)	
+What’s the 3-digit **fips** code of Broome County?
+```{r}
+
+```
+
+### Question 1(e)	
+Compute descriptive statistics of the population column (**P0010001**), including total, minimum, maximum, mean, median, and skewness. 
+```{r}
+
+```
+
+### Question 1(f)	
+Create a histogram and a boxplot of the population.
+```{r}
+
+```
+
+
+## Question 2
+Use R package **UScensus2010tract** to complete the following tasks:    (20 pt.)
+```{r}
+
+```
+
+### Question 2(a)	
+Plot a map of New York census tracts using the **plot** function.
+```{r}
+
+```
+
+### Question 2(b)
+Compute the total population based on census tracts.
+```{r}
+
+```
+
+### Question 2(c)
+Select all census tracts in Broome County and plot the map. 
+```{r}
+
+```
+
+### Question 2(d)
+What’s the total population of Broome County?
+```{r}
+
+```
+
+### Question 2(e)
+Create a histogram and a boxplot of population based on census tracts of Broome County.
+```{r}
+
+```
+
+### Question 2(f)
+Select the first five columns of the shapefile of Broome County census tract; add a new population ratio column (= census tract population / county population); save the new shapefile to the hard drive. 
+```{r}
+
+```
+
+
+## Question 3
+
+Use R packages **raster** and **ncdf4** to complete the following tasks:     (20 pt.)
+```{r}
+
+```
+
+### Question 3(a)		
+Load the multi-band raster dataset “NDVI.nc” into R.
+```{r}
+
+```
+
+### Question 3(b)		
+Get the basic information about the dataset, including the number of rows, columns, cells, and bands; spatial resolution, extent, bounding box, and projection.
+```{r}
+
+```
+
+### Question 3(c)	
+Aggregate all bands to generate a mean NDVI raster and a maximum NDVI raster; save the two new raster datasets to the hard drive. 
+```{r}
+
+```
+
+### Question 3(d)			
+Plot the maps of monthly NDVI of the year 2001
+```{r}
+
+```
+
+### Question 3(e)	
+Create histograms of monthly NDVI of the year 2001.
+```{r}
+
+```
+
+### Question 3(f)			
+Plot the NDVI map of July 2000; click any location with data on the map and retrieve the NDVI time series for all years; plot the NDVI time series of the selected location. 
+```{r}
+
+```
+
